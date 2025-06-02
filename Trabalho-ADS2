@@ -1,0 +1,291 @@
+//CSS//
++---------------------------------------------------------------------------------------------------------+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    font-weight: bold;
+    background-color: cornflowerblue;
+    color: #000;
+}
+
+header {
+    background-color: wheat;
+    color: #000;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 20px; 
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.493);
+}
+
+header table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header table th, tr, td {
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+
+main {
+    width: 400px;
+    padding: 20px;
+    background-color: wheat;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 5px 5px 5px #000;
+}
+
+main form {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+input[type="button"] {
+    cursor: pointer;
+}
+
+main form table th, main form table td {
+    padding: 10px; 
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+
+footer{
+    background-color: wheat;
+    padding: 5%;
+    text-align: center;
+    box-shadow: 5px 5px 5px #000;
+   border-bottom-left-radius: 5px;
+   border-bottom-right-radius: 5px;
+   border-top-left-radius: 5px;
+   border-top-right-radius: 5px;
+}
++------------------------------------------------------------------------------------------------------+
+//html//
++------------------------------------------------------------------------------------------------------+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabalho-ADS2</title>
+    <link rel="stylesheet" href="/formulario.css">
+</head>
+<body>
+    <header>
+        <table>
+            <tr>
+                <th>Nome:</th>
+                <th>RA:</th>
+            </tr>
+            <tr>
+                <td>Nícolas Joly Mussi</td>
+                <td>2025105022</td>
+            </tr>
+
+            <tr>
+                <td>Octavio Henrique Knupp Lucio</td>
+                <td>2025106940</td>
+            </tr>
+
+            <tr>
+                <td>Carlos Daniel Pinheiro de Souza</td>
+                <td>2025105129</td>
+            </tr>
+
+        </table>
+    </header>
+
+    <main>
+        <form class="form-item" id="meuFormulario">
+
+            <h1>Fomulário Cadastro</h1>
+
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" id="txtNome" required>
+            </div>
+
+            <div>
+                <label for="sobrenome">Sobrenome:</label>
+                <input type="text" id="txtSobrenome" required>
+            </div>
+
+            <div>
+                <label for="genero">Gênero:</label>
+                <select id="txtGenero">
+                    <option value="">Selecione</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="estado-civil">Estado Civil:</label>
+                <select id="txtEstado">
+                    <option value="">Selecione</option>
+                    <option value="solteiro">Solteiro(a)</option>
+                    <option value="casado">Casado(a)</option>
+                    <option value="divorciado">Divorciado(a)</option>
+                    <option value="viuvo">Viúvo(a)</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="txtEmail" required>
+            </div>
+
+            <div>
+                <label for="data-nascimento">Data de Nascimento:</label>
+                <input type="date" id="txtData" name="data-nascimento" required>
+            </div>
+            
+            <div>
+                <label for="cidade">Cidade:</label>
+                <select id="txtCidade">
+                    <option value="">Selecione</option>
+                    <option value="curitiba">Curitiba</option>
+                    <option value="londrina">Londrina</option>
+                    <option value="maringa">Maringá</option>
+                    <option value="cascavel">Cascavel</option>
+                    <option value="pinhais">Pinhais</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="password">Senha:</label>
+                <input type="password" id="txtSenha" required>
+            </div>
+
+            <div>
+                <label for="confirm-password">Confirmar Senha:</label>
+                <input type="password" id="txtConfirmar" name="confirm-password" required>
+            </div>
+
+            <div>
+                <p><input type="checkbox" id="txtTermos"> Concordo com os termos acima</p>
+            </div>
+
+            <div>
+                <input type="button" value="Salvar" onclick="Salvar()">
+            </div>
+            
+            <div>
+                <input type="button" value="Limpar-Tabela" onclick="LimparTabela()" >
+            </div>
+        </form>
+    </main>
+
+        <footer>
+            <p>&copy; Material produzido pela Equipe NOC para fins acadêmicos — 2025.</p>
+        </footer>
+
+     <script src="/formulario.js"></script>
+
+    </body>
+</html>
++-----------------------------------------------------------------------------------------------------------+
+//JavaScript//
++-----------------------------------------------------------------------------------------------------------+
+function ExibirMensagem(msg){
+    alert(msg);
+}
+ function Salvar(){
+    const inputNome = document.querySelector("#txtNome");
+    const inputSobrenome = document.querySelector("#txtSobrenome");
+    const inputGenero = document.querySelector("#txtGenero");
+    const selectEstado = document.querySelector("#txtEstado");
+    const inputEmail = document.querySelector("#txtEmail");
+    const inputData = document.querySelector("#txtData");
+    const inputCidade = document.querySelector("#txtCidade");
+    const inputSenha = document.querySelector("#txtSenha");
+    const inputConfirmar = document.querySelector("#txtConfirmar");
+    const inputTermos = document.querySelector("#txtTermos");
+    const formOK = ValidarFormulario(inputNome, inputSobrenome, inputGenero, selectEstado, inputEmail, inputData, inputCidade, inputSenha, inputConfirmar, inputTermos);
+    if(formOK == false)
+    {
+        return;
+    }
+}
+
+function ValidarFormulario(nome, sobrenome, genero, estadocvl, email, dtncmt, cidade, senha, confsenha, termos){
+    if(nome.value == ""){
+        ExibirMensagem("Preencha nome");
+        nome.focus();
+        return false;
+    }
+    if(sobrenome.value == ""){
+        ExibirMensagem("Preencha Sobrenome");
+        sobrenome.focus();
+        return false;
+    }
+    if(genero.value == ""){
+        ExibirMensagem("Selecione o Gênero");
+        genero.focus();
+        return false;
+    }
+    if(estadocvl.value == ""){
+        ExibirMensagem("Selecione Estado Civil");
+        estadocvl.focus();
+        return false;
+    }
+    if(email.value == ""){
+        ExibirMensagem("Preencha Email");
+        email.focus();
+        return false;
+    }
+    if(dtncmt.value == ""){
+        ExibirMensagem("Preencha Data de Nascimento");
+        dtncmt.focus();
+        return false;
+    }
+    if(cidade.value === ""){
+        ExibirMensagem("Selecione a Cidade");
+        cidade.focus();
+        return false;
+        
+    }
+    if(senha.value == ""){
+        ExibirMensagem("Preencha Senha");
+        senha.focus();
+        return false;
+    }
+    if(confsenha.value == ""){
+        ExibirMensagem("Confirme sua senha");
+        confsenha.focus();
+        return false;
+    }
+    if(senha.value != confsenha.value){
+    ExibirMensagem("As senhas não coincidem");
+    confsenha.focus();
+    return false;
+}
+    if(!termos.checked){
+        ExibirMensagem("Concorde com os Termos");
+        termos.focus();
+        return false;
+    } 
+    return true;
+}
+function LimparTabela(){
+    document.querySelector("#txtNome").value = "";
+    document.querySelector("#txtSobrenome").value = "";
+    document.querySelector("#txtGenero").value = "";
+    document.querySelector("#txtEstado").value = "";
+    document.querySelector("#txtEmail").value = "";
+    document.querySelector("#txtData").value = "";
+    document.querySelector("#txtCidade").value = "";
+    document.querySelector("#txtSenha").value = "";
+    document.querySelector("#txtConfirmar").value = "";
+    document.querySelector("#txtTermos").checked = false;
+}
