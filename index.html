@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <title>Trabalho 2A 2°Bim</title>
+
+</head>
+
+<body>
+    <header>
+        <table>
+            <tr>
+                <th>Nome:</th>
+                <th>RA:</th>
+            </tr>
+            <tr>
+                <td>Nícolas Joly Mussi</td>
+                <td>2025105022</td>
+            </tr>
+
+            <tr>
+                <td>Octavio Henrique Knupp Lucio</td>
+                <td>2025106940</td>
+            </tr>
+
+            <tr>
+                <td>Carlos Daniel Pinheiro de Souza</td>
+                <td>2025105129</td>
+            </tr>
+            <tr>
+                <td>Gabriel Wellington Moreira</td>
+                <td>2025105066</td>
+            </tr>
+        </table>
+    </header>
+    <main>
+        <div class="container">
+            <div>
+                <h2>Gerar Parágrafos</h2>
+                <input type="button" value="Gerar Parágrafos" onclick="GerarParagrafos()">
+                <div id="paragrafos"></div>
+            </div>
+
+            <div>
+                <h2>Gerar Tabuada</h2>
+                <label for="numero">Digite um número de 1 a 10:</label>
+                <div>
+                    <button onclick="GerarTabuada()">Gerar Tabuada</button>
+                    <input type="number" id="numero">
+                </div>
+                <div id="tabuada" class="tabuada-resultado"></div>
+            </div>
+
+            <div>
+                <h2>Média de Notas</h2>
+
+                <div>
+                    <label for="nota1">Nota 1:</label>
+                    <input type="number" id="nota1" step="0.1" min="0" max="10">
+                </div>
+
+                <div>
+                    <label for="nota2">Nota 2:</label>
+                    <input type="number" id="nota2" step="0.1" min="0" max="10">
+                </div>
+                <div>
+                    <label for="faltas">Quantidade de faltas:</label>
+                    <input type="number" id="faltas" min="0" max="80">
+                </div>
+
+                <button onclick="calcularMedia()">Calcular</button>
+                <div id="resultadoMedia"></div>
+            </div>
+
+            <div>
+                <h2>Lista de Compras</h2>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; Material produzido pela equipe NOC para fins acadêmicos - 2025</p>
+    </footer>
+
+    <script src="/index.js"></script>
+</body>
+
+</html>
