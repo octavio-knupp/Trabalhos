@@ -1,0 +1,189 @@
+//Css
++------------------------------------------------------------------------------+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    font-weight: bold;
+    background-color: white;
+    color: #000;
+}
+
+header {
+    background-color: grey;
+    color: #000;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 20px; 
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.493);
+}
+
+header table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header table th, tr, td {
+    border: 1px solid #000;
+    border-radius: 3px;
+}
++--------------------------------------------------------------------+
+//html
++--------------------------------------------------------------------+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <title>Trabalho 2A 2°Bim</title>
+    
+</head>
+<body>
+    <header>
+        <table>
+            <tr>
+                <th>Nome:</th>
+                <th>RA:</th>
+            </tr>
+            <tr>
+                <td>Nícolas Joly Mussi</td>
+                <td>2025105022</td>
+            </tr>
+
+            <tr>
+                <td>Octavio Henrique Knupp Lucio</td>
+                <td>2025106940</td>
+            </tr>
+
+            <tr>
+                <td>Carlos Daniel Pinheiro de Souza</td>
+                <td>2025105129</td>
+            </tr>
+        </table>
+    </header>     
+    <main>
+        <div> <!--Gerar Parágrafos-->
+            <h2>Gerar Parágrafos</h2>
+            <input type="button" value="Gerar Parágrafos" onclick="GerarParagrafos()">
+            <div id="paragrafos"></div>
+        </div>
+        
+        <div><!--Tabuada-->
+            <h2>Gerar Tabuada</h2>
+            <label for="numero">Digite um número de 1 a 10:</label>
+            <input type="number" id="numero">
+            <button onclick="GerarTabuada()">Gerar Tabuada</button>
+            <div id="tabuada" class="tabuada"></div>
+        </div>
+        
+        <div><!--Média notas-->
+            <h2>Média de Notas</h2>
+
+            <div>
+                <label for="nota1">Nota 1:</label>
+                <input type="number" id="nota1" step="0.1" min="0" max="10">
+            </div>
+
+            <div>
+                <label for="nota2">Nota 2:</label>
+                <input type="number" id="nota2" step="0.1" min="0" max="10">
+            </div>
+            <div>
+                <label for="faltas">Quantidade de faltas:</label>
+                <input type="number" id="faltas" min="0" max="80">
+            </div>
+
+            <button onclick="calcularMedia()">Calcular</button>
+
+            <div id="resultadoMedia"></div>
+        </div>
+</main>   
+
+ <script src="/index.js"></script>
+</body>
+</html>
++-----------------------------------------------------------------+
+JavaScript
++-----------------------------------------------------------------+
+function GerarParagrafos() {
+      const container = document.querySelector("#paragrafos");
+      container.innerHTML = "";
+
+      for (let i = 1; i <= 10; i++) {
+        const p = document.createElement("p");
+        p.textContent = `Parágrafo ${i}: Octavio, Nicolas e Carlos conseguiram!`;
+
+        if (i % 3 === 0) {
+          p.style.backgroundColor = "#188";
+          p.classList.add("bold");
+        }
+
+        container.appendChild(p);
+      }
+    }
+
+    
+// Função para gerar a tabuada com validação de input
+function GerarTabuada() {
+    const valor = Number(document.querySelector('#numero').value);
+    const tabuadaDiv = document.querySelector('#tabuada');
+    tabuadaDiv.innerHTML = ''; // limpa resultado anterior
+
+    if (isNaN(valor) || valor < 1 || valor > 10) {
+        tabuadaDiv.textContent = 'Valor inválido, informe valor entre 1-10';
+        tabuadaDiv.style.color = 'red';
+        return;
+    }
+
+    tabuadaDiv.style.color = 'black'; // resetar cor
+    for (let i = 1; i <= 10; i++) {
+        const linha = document.createElement('p');
+        linha.textContent = `${valor} x ${i} = ${valor * i}`;
+        tabuadaDiv.appendChild(linha);
+    }
+
+
+    function calcularMedia() {
+    const nota1 = Number(document.querySelector('#nota1').value);
+    const nota2 = Number(document.querySelector('#nota2').value);
+    const faltas = Number(document.querySelector('#faltas').value);
+    const totalAulas = 80;
+    const resultadoDiv = document.querySelector('#resultadoMedia');
+
+    // Validar inputs
+    if (
+        isNaN(nota1) || nota1 < 0 || nota1 > 10 ||
+        isNaN(nota2) || nota2 < 0 || nota2 > 10 ||
+        isNaN(faltas) || faltas < 0 || faltas > totalAulas
+    ) {
+        resultadoDiv.textContent = 'Preencha os campos corretamente.';
+        resultadoDiv.style.color = 'red';
+        return;
+    }
+
+    const media = (nota1 + nota2) / 2;
+    const percentualPresenca = ((totalAulas - faltas) / totalAulas) * 100;
+
+    let mensagem = '';
+    let cor = '';
+
+    if (percentualPresenca < 75) {
+        mensagem = `Reprovado por falta. Presença: ${percentualPresenca.toFixed(2)}%`;
+        cor = 'red';
+    } else if (media < 7) {
+        mensagem = `Reprovado. Média: ${media.toFixed(2)}`;
+        cor = 'red';
+    } else {
+        mensagem = `Aprovado! Média: ${media.toFixed(2)} - Presença: ${percentualPresenca.toFixed(2)}%`;
+        cor = 'green';
+    }
+
+    resultadoDiv.textContent = mensagem;
+    resultadoDiv.style.color = cor;
+}
+
+}
