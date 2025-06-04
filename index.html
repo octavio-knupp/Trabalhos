@@ -31,10 +31,6 @@
                 <td>Carlos Daniel Pinheiro de Souza</td>
                 <td>2025105129</td>
             </tr>
-            <tr>
-                <td>Gabriel Wellington Moreira</td>
-                <td>2025105066</td>
-            </tr>
         </table>
     </header>
     <main>
@@ -78,6 +74,28 @@
 
             <div>
                 <h2>Lista de Compras</h2>
+                <div>
+                    <label>Nome do produto</label>
+                    <input type="text " id="produto" placeholder="Digite o nome do produto">
+                </div>
+                <div>
+                    <label>Valor do produto</label>
+                    <input type="number" id="valor" step="0.01" placeholder="Digite o valor">
+                </div>
+                <button onclick="adicionarItem()">Adicionar Produto</button>
+                <button onclick="limparLista()">Limpar Lista</button>
+
+                <table id="tabela">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Valor (R$)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista">
+                    <!-- Itens aparecerão aqui -->
+                    </tbody>
+                </table>
             </div>
         </div>
 
