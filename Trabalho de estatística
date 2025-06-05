@@ -1,0 +1,109 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Lista para armazenar os valores digitados
+        List<double> dados = new List<double>();
+
+        Console.WriteLine("===== PROGRAMA DE ESTATÍSTICA =====");
+        Console.WriteLine("Digite até 10 valores.");
+        Console.WriteLine("Se quiser encerrar antes, digite 'fim'.\n");
+
+        // Entrada de dados
+        while (dados.Count < 10)
+        {
+            Console.Write($"Digite o valor {dados.Count + 1}: ");
+            string entrada = Console.ReadLine();
+
+            // Se o usuário digitar "fim", encerra a entrada
+            if (entrada.ToLower() == "fim")
+            {
+                break;
+            }
+
+            // Tenta converter o que foi digitado em número
+            if (double.TryParse(entrada, out double valor))
+            {
+                dados.Add(valor);
+            }
+            else
+            {
+                Console.WriteLine("❌ Entrada inválida! Digite um número ou 'fim' para encerrar.");
+            }
+        }
+
+        // Se nenhum dado for inserido, o programa encerra
+        if (dados.Count == 0)
+        {
+            Console.WriteLine("\nNenhum dado foi inserido. O programa será encerrado.");
+            return;
+        }
+
+        // ===== Cálculos Estatísticos =====
+        double media = dados.Average();
+        double mediana = CalcularMediana(dados);
+        double variancia = CalcularVarianciaAmostral(dados, media);
+        double desvioPadrao = Math.Sqrt(variancia);
+        double coeficienteVariacao = (media != 0) ? (desvioPadrao / media) * 100 : 0;
+
+        // Verifica homogeneidade
+        string homogeneidade = coeficienteVariacao <= 30 ? "Homogêneo" : "Heterogêneo";
+
+        // ===== Exibir Resultados =====
+        Console.WriteLine("\n===== RESULTADOS =====");
+        Console.WriteLine($" Total de valores: {dados.Count}");
+        Console.WriteLine($" Média aritmética: {media:F2}");
+        Console.WriteLine($" Mediana: {mediana:F2}");
+        Console.WriteLine($" Variância amostral: {variancia:F2}");
+        Console.WriteLine($" Desvio padrão: {desvioPadrao:F2}");
+        Console.WriteLine($" Coeficiente de variação: {coeficienteVariacao:F2}%");
+        Console.WriteLine($" O conjunto de dados é: {homogeneidade}");
+
+        Console.WriteLine("\n========================");
+        Console.WriteLine("Nome:Octavio Henrique Knupp Lucio - RA:2025106940");
+        Console.WriteLine("Nome:Nícolas Joly Mussi - RA:2025105022");
+        Console.WriteLine("Nome:Gabriel Wellington Moreira - RA:2025105066");
+        Console.WriteLine("Nome:Carlos Daniel Pinheiro de Souza - RA:2025105129");
+        Console.WriteLine("Pressione qualquer tecla para sair...");
+        Console.ReadKey();
+    }
+
+    // ===== Função para calcular a Mediana =====
+    static double CalcularMediana(List<double> dados)
+    {
+        var ordenados = dados.OrderBy(x => x).ToList();
+        int n = ordenados.Count;
+
+        if (n % 2 == 1)
+        {
+            // Se quantidade é ímpar, pega o valor do meio
+            return ordenados[n / 2];
+        }
+        else
+        {
+            // Se quantidade é par, faz a média dos dois do meio
+            return (ordenados[(n / 2) - 1] + ordenados[n / 2]) / 2.0;
+        }
+    }
+
+    // ===== Função para calcular a Variância Amostral =====
+    static double CalcularVarianciaAmostral(List<double> dados, double media)
+    {
+        int n = dados.Count;
+        if (n < 2) return 0;
+
+        double soma = 0;
+        foreach (var valor in dados)
+        {
+            soma += Math.Pow(valor - media, 2);
+        }
+        return soma / (n - 1); // Fórmula da variância amostral
+
+       
+    }
+   
+}
